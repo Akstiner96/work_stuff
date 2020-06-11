@@ -1,4 +1,4 @@
 # work_stuff
 all my python notebooks for work
 ---
-# Just click on the file with the job name
+# Click on 'Projects' then choose the file with the project you are looking for.
