@@ -32,3 +32,128 @@ def labor_calc():
     total = print(f"Total labor price is: {total_labor_price}")
     return total
 
+
+
+def ephesus_labor():
+    # initialize cost variables
+    base_drilling = 300
+    extra_drilling = 100
+    
+    base_lift = 600
+    extra_lift = 237.50
+    
+    base_concrete = 225
+    extra_concrete = 225
+    
+    base_labor = 1080
+    extra_labor = 1080
+    
+    base_pier = 1590.50
+    extra_pier = 1590.50
+    
+    lights_labor = 135
+    extra_lights = 135
+    
+    #declare independent variables
+    print('Pole Height')
+    pole_height = int(input())
+    
+    print('Number of Days')
+    days = int(input())
+
+    print('Number of Poles')
+    poles = int(input())
+    
+    print('Number of Lights')
+    lights = int(input())
+    
+    print('Pier Base?')
+    base = str(input().lower())
+    
+    
+    # Calculate labor total
+    if poles > 1 and pole_height <= 60:
+        #calculate drilling and man labor
+        drilling_cost = base_drilling + (poles*extra_drilling)
+        labor_poles = base_labor + (poles*extra_labor)
+        
+        #calculate lift cost
+        if days >= 1:
+            lift_cost = base_lift + (extra_lift*days)
+        else:
+            lift_cost = base_lift
+        
+        #calculate pier base or concrete cost
+        if base == 'no':
+            concrete_cost = base_concrete + (extra_concrete*poles)
+        else:
+            concrete_cost = base_pier + (extra_pier*poles)
+        
+        #calculate lighting labor cost
+        if lights > 1:
+            lighting_cost = lights_labor + (extra_lights*lights)
+        else:
+            print('Yo why they only installing one light, do this math in your head foo')
+        
+        
+    elif poles > 1 and pole_height > 60:
+        
+        #calculate drilling and man labor
+        drilling_cost = base_drilling + (poles*extra_drilling)
+        labor_poles = base_labor + (poles*extra_labor)
+        
+        #calculate lift cost
+        if days >= 1:
+            lift_cost = (base_lift + (extra_lift*days))*1.5
+        else:
+            lift_cost = base_lift*1.5
+            
+        #calculate pier base or concrete cost
+        if base == 'no':
+            concrete_cost = base_concrete + (extra_concrete*poles)
+        else:
+            concrete_cost = base_pier + (extra_pier*poles)
+            
+        #calculate lighting labor cost
+        if lights > 1:
+            lighting_cost = lights_labor + (extra_lights*lights)
+        else:
+            print('Yo why they only installing one light, do this math in your head foo')
+            
+    elif poles == 1 and pole_height <= 60:
+        drilling_cost = base_drilling
+        labor_poles = base_labor
+        lift_cost = base_lift
+        if base == 'no':
+            concrete_cost = base_concrete
+        else:
+            concrete_cost = base_pier
+        
+        if lights > 1:
+            lighting_cost = lights_labor + (extra_lights*lights)
+        else:
+            print('Yo why they only installing one light, do this math in your head foo')
+            
+            
+    elif poles == 1 and pole_height > 60:
+        drilling_cost = base_drilling
+        labor_poles = base_labor
+        lift_cost = base_lift*1.5
+        if base == 'no':
+            concrete_cost = base_concrete
+        else:
+            concrete_cost = base_pier
+            
+        if lights > 1:
+            lighting_cost = lights_labor + (extra_lights*lights)
+        else:
+            print('Yo why they only installing one light, do this math in your head foo')
+            
+            
+    else:
+        print("I don't know how to calculate that for you")
+        
+    total_price = drilling_cost + labor_poles + lift_cost + concrete_cost + lighting_cost    
+    total = print(f"Total install price for this project is {total_price}")
+    
+    return total
