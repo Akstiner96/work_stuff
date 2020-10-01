@@ -93,7 +93,7 @@ def ephesus_labor():
         if lights > 1:
             lighting_cost = lights_labor + (extra_lights*lights)
         else:
-            print('Yo why they only installing one light, do this math in your head foo')
+            print('Yo why they only installing one light, do this math in your head man')
         
         
     elif poles > 1 and pole_height > 60:
@@ -118,7 +118,7 @@ def ephesus_labor():
         if lights > 1:
             lighting_cost = lights_labor + (extra_lights*lights)
         else:
-            print('Yo why they only installing one light, do this math in your head foo')
+            print('Yo why they only installing one light, do this math in your head man')
             
     elif poles == 1 and pole_height <= 60:
         drilling_cost = base_drilling
@@ -132,7 +132,7 @@ def ephesus_labor():
         if lights > 1:
             lighting_cost = lights_labor + (extra_lights*lights)
         else:
-            print('Yo why they only installing one light, do this math in your head foo')
+            print('Yo why they only installing one light, do this math in your head man')
             
             
     elif poles == 1 and pole_height > 60:
@@ -147,7 +147,7 @@ def ephesus_labor():
         if lights > 1:
             lighting_cost = lights_labor + (extra_lights*lights)
         else:
-            print('Yo why they only installing one light, do this math in your head foo')
+            print('Yo why they only installing one light, do this math in your head man')
             
             
     else:
