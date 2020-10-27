@@ -42,11 +42,9 @@ def ephesus_labor():
     base_lift = 600
     extra_lift = 237.50
     
+    #concrete and pier costs based on a standard 24" wide x 10' deep hole
     base_concrete = 225
     extra_concrete = 225
-    
-    base_labor = 1080
-    extra_labor = 1080
     
     base_pier = 1590.50
     extra_pier = 1590.50
@@ -55,27 +53,36 @@ def ephesus_labor():
     extra_lights = 135
     
     #declare independent variables
-    print('Pole Height')
+    print('Pole Height?')
     pole_height = int(input())
     
-    print('Number of Days')
+    print('Number of men on the job?')
+    men = int(input())
+    
+    print('Labor rate?')
+    labor_rate = float(input())
+    
+    print('Number of days?')
     days = int(input())
 
-    print('Number of Poles')
+    print('Number of Poles?')
     poles = int(input())
     
-    print('Number of Lights')
+    print('Number of Lights?')
     lights = int(input())
     
     print('Pier Base?')
     base = str(input().lower())
+    
+    print('Will the piers be subbed out?')
+    sub = str(input().lower())
     
     
     # Calculate labor total
     if poles > 1 and pole_height <= 60:
         #calculate drilling and man labor
         drilling_cost = base_drilling + (poles*extra_drilling)
-        labor_poles = base_labor + (poles*extra_labor)
+        labor_poles = ((labor_rate*10)*days)*men
         
         #calculate lift cost
         if days >= 1:
@@ -84,10 +91,14 @@ def ephesus_labor():
             lift_cost = base_lift
         
         #calculate pier base or concrete cost
-        if base == 'no':
+        if base == 'no' and sub == 'no':
             concrete_cost = base_concrete + (extra_concrete*poles)
-        else:
+        elif base == 'yes' and sub == 'no':
             concrete_cost = base_pier + (extra_pier*poles)
+        elif base == 'no' and sub =='yes':
+            concrete_cost = 0
+        else:
+            concrete_cost = 0
         
         #calculate lighting labor cost
         if lights > 1:
@@ -100,7 +111,7 @@ def ephesus_labor():
         
         #calculate drilling and man labor
         drilling_cost = base_drilling + (poles*extra_drilling)
-        labor_poles = base_labor + (poles*extra_labor)
+        labor_poles = ((labor_rate*10)*days)*men
         
         #calculate lift cost
         if days >= 1:
@@ -109,10 +120,14 @@ def ephesus_labor():
             lift_cost = base_lift*1.5
             
         #calculate pier base or concrete cost
-        if base == 'no':
+        if base == 'no' and sub == 'no':
             concrete_cost = base_concrete + (extra_concrete*poles)
-        else:
+        elif base == 'yes' and sub == 'no':
             concrete_cost = base_pier + (extra_pier*poles)
+        elif base == 'no' and sub == 'yes':
+            concrete_cost = 0
+        else:
+            concrete_cost = 0
             
         #calculate lighting labor cost
         if lights > 1:
@@ -122,12 +137,16 @@ def ephesus_labor():
             
     elif poles == 1 and pole_height <= 60:
         drilling_cost = base_drilling
-        labor_poles = base_labor
+        labor_poles = ((labor_rate*10)*days)*men
         lift_cost = base_lift
-        if base == 'no':
+        if base == 'no' and sub == 'no':
             concrete_cost = base_concrete
-        else:
+        elif base == 'yes' and sub == 'no':
             concrete_cost = base_pier
+        elif base == 'no' and sub == 'yes':
+            concrete_cost = 0
+        else:
+            concrete_cost = 0
         
         if lights > 1:
             lighting_cost = lights_labor + (extra_lights*lights)
@@ -137,12 +156,16 @@ def ephesus_labor():
             
     elif poles == 1 and pole_height > 60:
         drilling_cost = base_drilling
-        labor_poles = base_labor
+        labor_poles = ((labor_rate*10)*days)*men
         lift_cost = base_lift*1.5
-        if base == 'no':
+        if base == 'no' and sub == 'no':
             concrete_cost = base_concrete
-        else:
+        elif base == 'yes' and sub == 'no':
             concrete_cost = base_pier
+        elif base == 'no' and sub == 'yes':
+            concrete_cost = 0
+        else:
+            concrete_cost = 0
             
         if lights > 1:
             lighting_cost = lights_labor + (extra_lights*lights)
